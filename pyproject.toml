@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mwclient-templating"
+version = "0.1.0"
+description = "Template parsing and manipulation extension for mwclient (MediaWiki API client)"
+authors = [
+    { name="Maximilian Clemens", email="maximilian.clemens@mailbox.org" },
+    { name="ChatGPT" }
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "mwclient>=0.10"
+]
+
+[project.urls]
+Homepage = "https://github.com/MaximilianClemens/mwclient-templating"
+Repository = "https://github.com/MaximilianClemens/mwclient-templating"
+
+[tool.setuptools]
+packages = ["mwclient_templating"]
