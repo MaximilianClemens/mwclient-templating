@@ -4,22 +4,32 @@ class TemplateNode:
         self.type = type_
         self.data = data
 
-    def templates(self, key=None):
-        results = []
-        for v in self.data.values():
-            if isinstance(v, TemplateNode):
-                results.append(v)
-            elif isinstance(v, list):
-                results.extend([x for x in v if isinstance(x, TemplateNode)])
+    def templates(self, key):
         if key:
             return self.data.get(key, [])
-        return results
+
+    def append(self, key, type_, data):
+        if key in self.data:
+            if not isinstance(self.data[key], list):
+                raise Exception("No List element")
+        else:
+            self.data[key] = []
+
+        self.data[key].append(TemplateNode(type_, data))
 
     def __getitem__(self, key):
         return self.data[key]
 
     def __setitem__(self, key, value):
         self.data[key] = value
+
+    def get(self, key, fallback = None):
+        if key in self.data:
+            return self.data[key]
+        return fallback
+
+    def delete(self, key, fallback = None):
+        return self.data.pop(key, fallback)
 
     def __repr__(self):
         return f"<TemplateNode {self.type}: {len(self.data)} keys>"
